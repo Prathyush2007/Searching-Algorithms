@@ -1,91 +1,118 @@
 # Searching Algorithms
 
-**Author:** Prathyush  
+**Author:** Prathyush
 **PRN:** 24070123064
 **Batch:** ENTC A3  
 
 ---
 
 ## 📌 Overview
-This repository contains implementations of fundamental **searching algorithms** in C++:
-1. **Linear Search** – Iterative method using a `for` loop.
-2. **Sequential Search** – Similar to linear search but implemented using a `while` loop.
-3. **Binary Search** – Efficient searching algorithm that works on sorted arrays.
+**Searching** is the process of finding the location of a particular element (called the **target**) within a data structure such as an array or a list.  
+Efficient searching is a fundamental concept in computer science and is widely used in databases, software applications, and system programming.  
 
-These programs demonstrate how to find a target element in an array and return its index if found.
+This repository contains implementations of the following **searching algorithms** in C++:
+
+1. **Linear Search** – Simple iterative search through all elements.
+2. **Sequential Search** – Linear search implemented using a `while` loop.
+3. **Binary Search** – Efficient search for **sorted arrays** using a divide-and-conquer approach.
 
 ---
 
-## 🧑‍💻 Implemented Algorithms
+## 🧠 Theory
 
 ### 1. Linear Search
-- Checks each element one by one until the target is found.
-- Time Complexity: **O(n)**
-- Space Complexity: **O(1)**
+**Definition:**  
+Linear search, also known as **simple search**, is the most straightforward searching technique. It examines each element of the array sequentially until the target element is found or the end of the array is reached.
 
-```cpp
-int linearSearch(int arr[], int size, int target) {
-    for (int i = 0; i < size; i++) {
-        if (arr[i] == target) {
-            return i;
-        }
-    }
-    return -1;
-}
-2. Sequential Search
-Similar to linear search but uses a while loop instead of a for loop.
+**Working Principle:**  
+1. Start from the first element of the array.
+2. Compare the current element with the target.
+3. If it matches, return the index.
+4. Otherwise, move to the next element and repeat steps 2–3.
+5. If the end of the array is reached without a match, return `-1`.
 
-Time Complexity: O(n)
+**Advantages:**  
+- Simple and easy to implement.  
+- Works on both sorted and unsorted arrays.  
 
-Space Complexity: O(1)
+**Disadvantages:**  
+- Inefficient for large datasets (O(n) time complexity).  
 
-cpp
-Copy code
-int sequentialSearch(int arr[], int size, int target) {
-    int index = 0;
-    while (index < size) {
-        if (arr[index] == target)
-            return index;
-        index++;
-    }
-    return -1;
-}
-3. Binary Search
-Works only on sorted arrays.
+**Example:**  
+Array: `{10, 20, 30, 40, 50}`  
+Target: `30` → Found at index `2`.
 
-Divides the search range in half each time until the target is found.
+---
 
-Time Complexity: O(log n)
+### 2. Sequential Search
+**Definition:**  
+Sequential search is essentially a **linear search implemented using a while loop**. Functionally, it is the same as linear search, but the implementation uses `while` instead of `for`.  
 
-Space Complexity: O(1)
+**Working Principle:**  
+1. Initialize an index variable at 0.  
+2. While the index is less than the array size:
+   - Compare `arr[index]` with the target.
+   - If equal, return the index.
+   - Otherwise, increment the index.  
+3. If no match is found, return `-1`.
 
-cpp
-Copy code
-int binarySearch(int arr[], int size, int target) {
-    int start = 0, end = size - 1;
-    while (start <= end) {
-        int middle = start + (end - start) / 2;
-        if (arr[middle] == target)
-            return middle;
-        else if (arr[middle] < target)
-            start = middle + 1;
-        else
-            end = middle - 1;
-    }
-    return -1;
-}
-🚀 How to Run
-Clone the repository:
+**Advantages:**  
+- Easy to understand and implement.  
+- Works on unsorted arrays.  
 
-bash
-Copy code
-git clone https://github.com/<your-username>/<repo-name>.git
+**Disadvantages:**  
+- Linear time complexity (O(n)) makes it inefficient for large arrays.
+
+---
+
+### 3. Binary Search
+**Definition:**  
+Binary search is an efficient searching technique that works on **sorted arrays**. It uses a **divide-and-conquer** approach to reduce the search space by half in each step.  
+
+**Working Principle:**  
+1. Initialize `start` and `end` pointers.  
+2. Find the middle index: `middle = start + (end - start)/2`.  
+3. Compare `arr[middle]` with the target:
+   - If equal → return middle.  
+   - If target > `arr[middle]` → search in the right half.  
+   - If target < `arr[middle]` → search in the left half.  
+4. Repeat steps 2–3 until `start > end` (target not found).  
+
+**Advantages:**  
+- Very efficient for large datasets (O(log n) time complexity).  
+- Reduces comparisons drastically compared to linear search.  
+
+**Disadvantages:**  
+- Requires **sorted arrays**.  
+- Slightly complex to implement than linear search.  
+
+**Example:**  
+Array: `{10, 20, 30, 40, 50}`  
+Target: `40` → Found at index `3`.
+
+---
+
+## 📊 Comparison of Algorithms
+
+| Algorithm        | Best Case | Worst Case | Average Case | Requirement         |
+|------------------|-----------|------------|--------------|--------------------|
+| Linear Search    | O(1)      | O(n)       | O(n/2)       | Works on any array |
+| Sequential Search| O(1)      | O(n)       | O(n/2)       | Works on any array |
+| Binary Search    | O(1)      | O(log n)   | O(log n)     | Array must be sorted |
+
+---
+
+## 🚀 How to Run the Programs
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/<your-username>/<repo-name>.git
 Navigate into the project folder:
 
 bash
 Copy code
 cd <repo-name>
-Compile the program:
+Compile a C++ program:
 
 bash
 Copy code
@@ -95,8 +122,3 @@ Run the executable:
 bash
 Copy code
 ./output
-Example Output
-
-For an array {10, 20, 30, 40, 50} and target 40:
-
-Target 40 found at index 3.
