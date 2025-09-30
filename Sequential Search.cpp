@@ -1,3 +1,6 @@
+//Name : Prathyush
+//PRN : 24070123064
+//Batch : ENTC A3
 #include <iostream>
 using namespace std;
 
